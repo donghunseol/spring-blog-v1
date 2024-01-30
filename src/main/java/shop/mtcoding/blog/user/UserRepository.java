@@ -35,7 +35,7 @@ public class UserRepository {
         em.persist(user);
     }
 
-    public User findByUsernameAndPassword(UserRequest.loginDTO requestDTO) {
+    public User findByUsernameAndPassword(UserRequest.loginDTO requestDTO) { // 아이디 비밀번호를 입력시 DB에서 조회
         Query query = em.createNativeQuery("select * from user_tb where username=? and password=?", User.class); // 타입만 적어주면 자동으로 파싱해줌
         query.setParameter(1, requestDTO.getUsername());
         query.setParameter(2, requestDTO.getPassword());

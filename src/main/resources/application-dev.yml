@@ -4,3 +4,19 @@ server:
       charset: utf-8
       force: true
   port: 8080
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MySQL # MODE=MySQL 은 방언(DB Dialect) 설정
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create # ddl - CREATE DROP ALTER TRUNCATE COMMENT
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true # sql 을 깔끔하게 보이게 하는 코드

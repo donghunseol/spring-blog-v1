@@ -34,11 +34,26 @@ public class UserController {
         }
 
         // 2. Model 에게 위임하기
-        userRepository.saveV2(requestDTO);
+        userRepository.save(requestDTO);
 
         // DB INSERT
 
         return "redirect:/loginForm";
+    }
+    @PostMapping("/login")
+    public String login(UserRequest.loginDTO requestDTO){
+        // 1. 유효성 검사
+        if(requestDTO.getUsername().length() < 3){
+            return "error/400";
+        }
+
+        // 2. 모델 연결 select * from user_tb where username=? and password=?
+        User user = userRepository.findByUsernameAndPassword(requestDTO);
+
+        System.out.println(user);
+
+        // 3. 응답
+        return "redirect:/";
     }
 
     @GetMapping("/joinForm")

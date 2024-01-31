@@ -97,6 +97,7 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout() {
+        session.invalidate(); // 세션에 있는 것들을 삭제 시킨다. (서랍을 통째로 비워 버린다.)
         return "redirect:/";
     }
 }

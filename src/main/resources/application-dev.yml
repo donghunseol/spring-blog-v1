@@ -1,8 +1,11 @@
+# 톰캣(tomcat) 쪽!
 server:
   servlet:
     encoding:
       charset: utf-8
       force: true
+    session:
+      timeout: 1m
   port: 8080
 
 # DB 연결

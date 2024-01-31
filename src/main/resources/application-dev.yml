@@ -4,6 +4,8 @@ server:
       charset: utf-8
       force: true
   port: 8080
+
+# DB 연결
 spring:
   mustache:
     servlet:
@@ -14,13 +16,19 @@ spring:
     url: jdbc:h2:mem:test;MODE=MySQL # MODE=MySQL 은 방언(DB Dialect) 설정
     username: sa
     password:
+  # 콘솔 URL 만드는 것
   h2:
     console:
       enabled: true
+  sql:
+    init:
+      data-locations:
+        - classpath:db/data.sql # 리소스 코드를 의미 -> 예약어 같은 것 (리스트는 하이픈으로 적는다, 컬렉션이다 -> 작성법은 -을 추가해서 적는다. YAML 문법이다!)
   jpa:
     hibernate:
-      ddl-auto: create # ddl - CREATE DROP ALTER TRUNCATE COMMENT
+      ddl-auto: create # ddl - CREATE DROP ALTER TRUNCATE COMMENT -> none으로 설정 시 테이블이 생성 되지 않음
     show-sql: true
     properties:
       hibernate:
         format_sql: true # sql 을 깔끔하게 보이게 하는 코드
+    defer-datasource-initialization: true # sql 의 table 생성 코드가 먼저 실행 되도록 하는 코드

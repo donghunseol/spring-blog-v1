@@ -29,25 +29,39 @@ public class UserController {
     private final HttpSession session;
 
     @PostMapping("/join")
-    public String join(UserRequest.joinDTO requestDTO){
+    public String join(UserRequest.joinDTO requestDTO) {
         System.out.println(requestDTO);
 
         // 1. 유효성 검사
-        if(requestDTO.getUsername().length() < 3){
+        if (requestDTO.getUsername().length() < 3) {
             return "error/400";
         }
 
-        // 2. Model 에게 위임하기
-        userRepository.save(requestDTO);
+        // 2. 동일 username 체크 (나중에 하나의 트랜잭션으로 묶는게 좋다, 서비스 레이어)
+        User user = userRepository.findByUsername(requestDTO.getUsername());
+        if (user == null) {
+            userRepository.save(requestDTO);
+        } else {
+            return "error/400";
+        }
+
+
+        // 3. Model 에게 위임하기
+        try {
+            userRepository.save(requestDTO);
+        } catch (Exception e) {
+
+        }
 
         // DB INSERT
 
         return "redirect:/loginForm";
     }
+
     @PostMapping("/login")
-    public String login(UserRequest.loginDTO requestDTO){
+    public String login(UserRequest.loginDTO requestDTO) {
         // 1. 유효성 검사
-        if(requestDTO.getUsername().length() < 3){
+        if (requestDTO.getUsername().length() < 3) {
             return "error/400";
         }
 
@@ -58,9 +72,9 @@ public class UserController {
 //        // 유저가 null이 아니면 session 만들고 index 페이지로 이동
 //        System.out.println(user);
 
-        if(user == null){
+        if (user == null) {
             return "error/401";
-        }else {
+        } else {
             session.setAttribute("sessionUser", user); // 자료구조가 setAttribute 는 힙이다.
             return "redirect:/";
         }

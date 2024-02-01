@@ -12,8 +12,8 @@ server:
 spring:
   mustache:
     servlet:
-      expose-session-attributes: true
-      expose-request-attributes: true # mustache 파일에서 session과 request에 접근이 가능하도록 해준다.
+      expose-session-attributes: true # session
+      expose-request-attributes: true # request / mustache 파일에서 session 과 request 에 접근이 가능하도록 해준다.
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:test;MODE=MySQL # MODE=MySQL 은 방언(DB Dialect) 설정

@@ -21,6 +21,8 @@ public class User {
     private String password;
     private String email;
 
+    private String hobbys;
+
     @CreationTimestamp // insert 될때 자동으로 넣어줌
     private LocalDateTime createdAt;
 }

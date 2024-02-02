@@ -1,11 +1,9 @@
 package shop.mtcoding.blog.board;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import shop.mtcoding.blog.user.User;
-
-import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
@@ -13,7 +11,7 @@ public class BoardController {
 
     private final HttpSession session;
 
-    @GetMapping({ "/", "/board" })
+    @GetMapping({"/", "/board"})
     public String index() {
 //        User sessionUser = (User) session.getAttribute("sessionUser"); // User 객체
 //        if(sessionUser == null){

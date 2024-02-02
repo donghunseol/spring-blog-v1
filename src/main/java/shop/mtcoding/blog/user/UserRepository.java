@@ -1,10 +1,10 @@
 package shop.mtcoding.blog.user;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 @Repository // IoC에 뜬다. 내가 new를 안해도 된다.
 public class UserRepository {

@@ -21,6 +21,7 @@ public class PagingUtil {
 
         // 2. 나머지가 있다면?
         if (remainCount > 0) {
+
             totalPageCount = totalPageCount + 1;
         }
 
